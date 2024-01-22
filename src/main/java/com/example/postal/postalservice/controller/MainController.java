@@ -7,11 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +25,29 @@ public class MainController {
     public void addMessage(@RequestBody Message message) {
         log.info("New row" + messageRepository.save(message));
     }
+
     @SneakyThrows
     @GetMapping("/api/all")
-    public String getAll(){
-        List<Message> messageList = messageRepository.findAll();
-        return objectMapper.writeValueAsString(messageList);
+    public List<Message> getAll() {
+        return messageRepository.findAll();
+
     }
+
+    @GetMapping("/api")
+    public Message getMessage(@RequestParam int id) {
+        return messageRepository.findById(id).orElseThrow();
     }
+
+    @DeleteMapping("/api")
+    public void deleteMessage(@RequestParam int id) {
+        messageRepository.deleteById(id);
+    }
+
+    @PutMapping("/api/add")
+    public String changeMessage(@RequestBody Message message) {
+        if (!messageRepository.existsById(message.getId())) {
+            return "No such row.";
+        }
+        return messageRepository.save(message).toString();
+    }
+}

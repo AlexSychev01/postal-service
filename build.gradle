@@ -24,8 +24,10 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation('org.springdoc:springdoc-openapi-spring-boot-2-webmvc:3.1.5')
-	implementation('org.springdoc:springdoc-openapi:2.1.0')
+	implementation('io.springfox:springfox-swagger-ui:3.0.0')
+	implementation('io.springfox:springfox-swagger2:3.0.0')
+	implementation('io.swagger.core.v3:swagger-models:2.2.15')
+	implementation('io.swagger:swagger-models:2.0.0-rc2')
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'

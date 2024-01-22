@@ -5,10 +5,12 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.List;
 
 @Configuration
+
 public class SwaggerConfig {
     @Bean
     public OpenAPI api() {
@@ -17,5 +19,4 @@ public class SwaggerConfig {
                 .info(new Info().title("postal API"));
 
     }
-
 }

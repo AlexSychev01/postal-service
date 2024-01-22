@@ -2,14 +2,13 @@ package com.example.postal.postalservice.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Data
 @Getter
 @Setter
 @Entity
+@Builder
 @Table(name = "messages")
 
 public class Message {

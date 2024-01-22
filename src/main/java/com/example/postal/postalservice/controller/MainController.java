@@ -1,8 +1,10 @@
 package com.example.postal.postalservice.controller;
 
+import com.example.postal.postalservice.DTO.MessageDTO;
 import com.example.postal.postalservice.entity.Message;
 import com.example.postal.postalservice.repository.MessageRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -16,14 +18,22 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "main_methods")
 public class MainController {
 
     private final MessageRepository messageRepository;
-    private final ObjectMapper objectMapper;
 
     @PostMapping("/api/add")
-    public void addMessage(@RequestBody Message message) {
-        log.info("New row" + messageRepository.save(message));
+    public void addMessage(@RequestBody MessageDTO messageDTO) {
+
+        log.info("New row" + messageRepository.save(Message.builder()
+                .idNumber(messageDTO.getIdNumber())
+                .recipientName(messageDTO.getRecipientName())
+                .index(messageDTO.getIndex())
+                .address(messageDTO.getAddress())
+                .status(messageDTO.getStatus())
+                .type(messageDTO.getType())
+                .build()));
     }
 
     @SneakyThrows

@@ -4,6 +4,7 @@ import com.example.postal.postalservice.DTO.MessageDTO;
 import com.example.postal.postalservice.entity.Message;
 import com.example.postal.postalservice.repository.MessageRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -23,6 +24,10 @@ public class MainController {
 
     private final MessageRepository messageRepository;
 
+    @Operation(
+            summary = "add new message in database",
+            description = "get message dto build and save in db"
+    )
     @PostMapping("/api/add")
     public void addMessage(@RequestBody MessageDTO messageDTO) {
 
